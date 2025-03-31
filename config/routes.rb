@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+  get 'friendships/create'
+  get 'friendships/destroy'
+  get 'bookings/create'
+  get 'bookings/destroy'
+  get 'experiences/index'
+  get 'experiences/show'
+  get 'experiences/new'
+  get 'experiences/create'
+  get 'experiences/edit'
+  get 'experiences/update'
+  get 'experiences/destroy'
+  get 'profiles/index'
+  get 'profiles/show'
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

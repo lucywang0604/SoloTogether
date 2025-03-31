@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_03_31_103354) do
+ActiveRecord::Schema[7.1].define(version: 2025_03_31_121527) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,56 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_31_103354) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "bookings", force: :cascade do |t|
+    t.datetime "date"
+    t.bigint "experience_id", null: false
+    t.bigint "profile_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["experience_id"], name: "index_bookings_on_experience_id"
+    t.index ["profile_id"], name: "index_bookings_on_profile_id"
+  end
+
+  create_table "experiences", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "city"
+    t.decimal "latitude"
+    t.decimal "longitude"
+    t.decimal "price"
+    t.integer "duration"
+    t.bigint "profile_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_experiences_on_profile_id"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer "profile_id_one"
+    t.integer "profile_id_two"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.string "name"
+    t.string "mode"
+    t.string "current_city"
+    t.string "original_city"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.text "content"
+    t.bigint "booking_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_reviews_on_booking_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -54,6 +104,22 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_31_103354) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "visited_cities", force: :cascade do |t|
+    t.string "name"
+    t.decimal "latitude"
+    t.decimal "longitude"
+    t.bigint "profile_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_visited_cities_on_profile_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bookings", "experiences"
+  add_foreign_key "bookings", "profiles"
+  add_foreign_key "experiences", "profiles"
+  add_foreign_key "profiles", "users"
+  add_foreign_key "reviews", "bookings"
+  add_foreign_key "visited_cities", "profiles"
 end
