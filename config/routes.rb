@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   resources :experiences
   resources :bookings, only: [:index, :show,:create, :destroy]
   resources :friendships, only: [:create, :destroy]
+  get "webmanifest"    => "pwa#manifest"
+  get "service-worker" => "pwa#service_worker"
 end
