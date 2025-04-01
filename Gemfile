@@ -48,6 +48,7 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 gem 'cloudinary', '~> 2.3'
+gem "geocoder"
 
 group :development, :test do
   gem "dotenv-rails"

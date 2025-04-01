@@ -3,8 +3,8 @@ class CreateProfiles < ActiveRecord::Migration[7.1]
     create_table :profiles do |t|
       t.string :name
       t.string :mode
-      t.string :current_city
-      t.string :original_city
+      t.references :current_city, null: true, foreign_key: { to_table: :cities }
+      t.references :original_city, null: true, foreign_key: { to_table: :cities }
       t.references :user, null: false, foreign_key: true
 
       t.timestamps

@@ -4,8 +4,8 @@
   <!-- Header with profile info -->
   <div class="p-4 bg-white shadow-sm">
     <div class="flex items-center gap-4">
-      <% if current_user&.photo.attached? %>
-        <%= cl_image_tag current_user.photo.key, class: "h-16 w-16 rounded-full object-cover" %>
+      <% if current_profile.avatar.attached? %>
+        <%= cl_image_tag current_profile.avatar.key, class: "h-16 w-16 rounded-full object-cover" %>
       <% else %>
         <div class="h-16 w-16 rounded-full bg-purple-200 flex items-center justify-center">
           <span class="text-purple-700 text-xl"><%= current_user&.email&.first&.upcase %></span>

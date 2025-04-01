@@ -2,12 +2,10 @@
 
 one:
   name: MyString
-  latitude: 9.99
-  longitude: 9.99
-  profile: one
+  latitude: 1.5
+  longitude: 1.5
 
 two:
   name: MyString
-  latitude: 9.99
-  longitude: 9.99
-  profile: two
+  latitude: 1.5
+  longitude: 1.5
