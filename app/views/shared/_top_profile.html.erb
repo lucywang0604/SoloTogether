@@ -1,0 +1,18 @@
+<!-- Wrapper div for entire page with overflow handling -->
+<div class="h-screen flex flex-col overflow-hidden">
+  <!-- Header with profile info -->
+  <div class="p-4 bg-white shadow-sm">
+    <div class="flex items-center gap-4">
+      <% if current_user&.photo.attached? %>
+        <%= cl_image_tag current_user.photo.key, class: "h-16 w-16 rounded-full object-cover" %>
+      <% else %>
+        <div class="h-16 w-16 rounded-full bg-purple-200 flex items-center justify-center">
+          <span class="text-purple-700 text-xl"><%= current_user&.email&.first&.upcase %></span>
+        </div>
+      <% end %>
+      <div>
+        <h1 class="text-xl font-semibold text-gray-900">Profile name</h1>
+        <p class="text-sm text-gray-500">Character</p>
+      </div>
+    </div>
+  </div>

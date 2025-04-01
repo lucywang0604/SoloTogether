@@ -1,2 +1,64 @@
-<h1>Experiences#index</h1>
-<p>Find me in app/views/experiences/index.html.erb</p>
+<!-- Top Navigation Tabs -->
+<div class="flex justify-between px-4 py-4 border-b bg-white">
+  <div class="text-gray-400">Meet People</div>
+  <div class="text-black border-b-2 border-pink-300 pb-2">Experiences</div>
+  <div class="text-gray-400">Tab 3</div>
+</div>
+
+<div class="min-h-screen bg-gray-100 py-8 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <!-- Header Section -->
+    <div class="flex justify-between items-center mb-8">
+      <h1 class="text-3xl font-bold text-gray-900">Experiences</h1>
+      <%= link_to "Create New Experience", new_experience_path,
+          class: "bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition" %>
+    </div>
+
+    <!-- Experiences Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <% @experiences.each do |experience| %>
+        <%= link_to experience_path(experience), class: "block" do %>
+          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2"><%= experience.name %></h3>
+              <p class="text-gray-600 mb-4"><%= truncate(experience.description, length: 100) %></p>
+
+              <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                  <svg class="h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  </svg>
+                  <span class="ml-2 text-gray-600"><%= experience.city %></span>
+                </div>
+                <span class="text-blue-600 font-semibold">
+                  <%= number_to_currency(experience.price) %>
+                </span>
+              </div>
+
+              <div class="mt-4 flex items-center text-sm text-gray-500">
+                <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+                <span class="ml-2">Anytime</span>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <!-- Empty State -->
+    <% if @experiences.empty? %>
+      <div class="text-center py-12">
+        <h3 class="text-lg font-medium text-gray-900 mb-2">No experiences yet</h3>
+        <p class="text-gray-500">Be the first to create an experience!</p>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= render "shared/bottom_nav" %>
+
+<!-- Add padding for fixed navigation -->
+<div class="pb-20"></div>

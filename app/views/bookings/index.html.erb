@@ -1,0 +1,22 @@
+  <%= render "shared/top_profile" %>
+
+<h1>Your Bookings</h1>
+
+<div class="overflow-y-auto flex-1">
+  <% @bookings.each do |booking| %>
+    <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <h3 class="text-lg font-semibold text-gray-900"><%= booking.experience.name %></h3>
+          <p class="text-sm text-gray-500">Date: <%= booking.date.strftime("%B %d, %Y") %></p>
+        </div>
+        <div class="flex items-center gap-2">
+          <%= link_to "View Details", booking_path(booking), class: "px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700" %>
+          <%= button_to "Cancel Booking", booking_path(booking), method: :delete, class: "px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700", data: { confirm: "Are you sure you want to cancel this booking?" } %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= render "shared/bottom_nav" %>

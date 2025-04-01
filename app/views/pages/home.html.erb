@@ -1,0 +1,78 @@
+<!-- Wrapper div for entire page with overflow handling -->
+<div class="h-screen flex flex-col overflow-hidden">
+  <!-- Header - fixed height -->
+  <div class="p-4 bg-white shadow-sm flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-gray-800">HOME</h1>
+    <% if current_user&.photo.attached? %>
+      <%= cl_image_tag current_user.photo.key, class: "h-10 w-10 rounded-full object-cover" %>
+    <% else %>
+      <div class="h-10 w-10 rounded-full bg-purple-200 flex items-center justify-center">
+        <span class="text-purple-700 text-lg"><%= current_user&.email&.first&.upcase %></span>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Scrollable content area -->
+  <div class="flex-1 overflow-y-auto bg-gray-50 pb-24"> <!-- Added flex-1 and overflow-y-auto -->
+    <div class="p-4 space-y-8">
+      <!-- Your existing sections -->
+      <section>
+        <h2 class="text-lg font-semibold text-gray-700 mb-4">LOCAL RECOMMENDATIONS</h2>
+        <div class="grid grid-cols-3 gap-4">
+          <div class="bg-white rounded-lg shadow-sm h-24"></div>
+          <div class="bg-white rounded-lg shadow-sm h-24"></div>
+          <div class="bg-white rounded-lg shadow-sm h-24"></div>
+        </div>
+      </section>
+
+      <!-- Rest of your sections... -->
+      <!-- Your Friends Section -->
+      <section>
+        <h2 class="text-lg font-semibold text-gray-700 mb-4">YOUR FRIENDS</h2>
+        <div class="grid grid-cols-3 gap-4">
+          <div class="bg-white rounded-lg shadow-sm h-24"></div>
+          <div class="bg-white rounded-lg shadow-sm h-24"></div>
+          <div class="bg-white rounded-lg shadow-sm h-24"></div>
+        </div>
+      </section>
+
+      <!-- People Nearby Section -->
+      <section>
+        <h2 class="text-lg font-semibold text-gray-700 mb-4">PEOPLE NEARBY</h2>
+        <div class="grid grid-cols-3 gap-4">
+          <div class="bg-white rounded-lg shadow-sm h-24"></div>
+          <div class="bg-white rounded-lg shadow-sm h-24"></div>
+          <div class="bg-white rounded-lg shadow-sm h-24"></div>
+        </div>
+      </section>
+
+      <!-- Experiences Nearby Section -->
+      <section>
+        <%= link_to experiences_path, class: "block" do %>
+          <h2 class="text-lg font-semibold text-gray-700 mb-4 hover:text-blue-600">EXPERIENCES NEARBY</h2>
+        <% end %>
+        <div class="grid grid-cols-3 gap-4">
+          <% @experiences&.each do |experience| %>
+            <%= link_to experience_path(experience), class: "block" do %>
+              <div class="bg-white rounded-lg shadow-sm p-3 h-24 hover:shadow-md transition-shadow">
+                <h3 class="text-sm font-medium text-gray-900 truncate"><%= experience.name %></h3>
+                <p class="text-xs text-gray-600 mt-1"><%= experience.city %></p>
+                <p class="text-xs text-blue-600 font-medium mt-1">
+                  <%= number_to_currency(experience.price) %>
+                </p>
+              </div>
+            <% end %>
+          <% end %>
+          <%= link_to experiences_path, class: "block" do %>
+            <div class="bg-white rounded-lg shadow-sm h-24 hover:shadow-md transition-shadow"></div>
+          <% end %>
+          <%= link_to experiences_path, class: "block" do %>
+            <div class="bg-white rounded-lg shadow-sm h-24 hover:shadow-md transition-shadow"></div>
+          <% end %>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <%= render "shared/bottom_nav" %>
+</div>
