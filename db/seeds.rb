@@ -35,12 +35,23 @@ visitor_profile.avatar.attach(io: File.open(Rails.root.join("app/assets/images/s
 puts "Creating Experiences"
 experience1 = Experience.create!(name: "Croissant workshop", description: "Explore the best local croissant", city: paris, price: 50.00, duration: 4, profile: local_profile)
 experience2 = Experience.create!(name: "Seine River Picnic", description: "Enjoy a picnic along the Seine River with wine tasting.", city: paris, price: 80.00, duration: 2, profile: local_profile)
+experience3 = Experience.create!(name: "Latin Quarter - Rue Mouffetard", description: "Explore rue de Mouffetard of the Latin quarter by night", city: paris, price: 40.00, duration: 2, profile: local_profile)
+experience4 = Experience.create!(name: "Explore Paris Specialty Cafe", description: "Enjoy local roasted coffee", city: paris, price: 25.00, duration: 3, profile: local_profile)
+experience5 = Experience.create!(name: "Walking the paths of Monet", description: "Explore the walking paths of Monet", city: paris, price: 35.00, duration: 4, profile: local_profile)
+experience6 = Experience.create!(name: "Explore the best bookstores", description: "Explore vintage bookstores in Paris", city: paris, price: 25.00, duration: 3, profile: local_profile)
 
 experience1.photo.attach(io: File.open(Rails.root.join("app/assets/images/seeds/experiences/croissants.jpg")), filename: "croissants.jpg", content_type: "image/jpg")
 experience2.photo.attach(io: File.open(Rails.root.join("app/assets/images/seeds/experiences/picnic.jpg")), filename: "picnic.jpg", content_type: "image/jpg")
+experience3.photo.attach(io: File.open(Rails.root.join("app/assets/images/seeds/experiences/rue.jpg")), filename: "rue.jpg", content_type: "image/jpg")
+experience4.photo.attach(io: File.open(Rails.root.join("app/assets/images/seeds/experiences/coffee.jpg")), filename: "coffee.jpg", content_type: "image/jpg")
+experience5.photo.attach(io: File.open(Rails.root.join("app/assets/images/seeds/experiences/monet.jpg")), filename: "monet.jpg", content_type: "image/jpg")
+experience6.photo.attach(io: File.open(Rails.root.join("app/assets/images/seeds/experiences/bookstore.jpg")), filename: "bookstore.jpg", content_type: "image/jpg")
 
 puts "Creating a Booking"
 booking1 = Booking.create!(date: DateTime.now, experience: experience1, profile: visitor_profile)
+booking2 = Booking.create!(date: 2.weeks.ago, experience: experience3, profile: visitor_profile)
+booking3 = Booking.create!(date: 1.month.ago, experience: experience5, profile: visitor_profile)
+booking4 = Booking.create!(date: 1.week.from_now.to_date, experience: experience6, profile: visitor_profile)
 
 puts "Creating a Review"
 review1 = Review.create!(content: "Amazing experience!", booking: booking1)

@@ -1,0 +1,57 @@
+ <%= render "shared/top_profile" %>
+
+<div class="pb-20 overflow-y-auto h-screen"> <!-- Add bottom padding and scrolling -->
+
+
+<div class="container my-4">
+  <div class="card shadow mx-3">
+    <% if @booking.experience.photo.attached? %>
+      <div class="p-3">
+        <%= cl_image_tag @booking.experience.photo.key, class: "card-img-top rounded", height: 300, style: "object-fit: cover;" %>
+      </div>
+    <% end %>
+
+    <div class="card-body">
+      <h2 class="card-title mb-4"><%= @booking.experience.name %></h2>
+
+      <div class="booking-details">
+        <div class="row mb-3">
+          <div class="col-sm-4">
+            <strong>Date:</strong>
+          </div>
+          <div class="col-sm-8">
+            <%= @booking.date.strftime("%B %d, %Y") %>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-sm-4">
+            <strong>Duration:</strong>
+          </div>
+          <div class="col-sm-8">
+            <%= @booking.experience.duration %> hours
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-sm-4">
+            <strong>Price:</strong>
+          </div>
+          <div class="col-sm-8">
+            €<%= @booking.experience.price %>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-sm-4">
+            <strong>Location:</strong>
+          </div>
+          <div class="col-sm-8">
+            <%= @booking.experience.city.name %>
+          </div>
+        </div>
+      </div>
+      <%= button_to "Back to Bookings", bookings_path, method: :get, class: "btn btn-secondary mt-3 fw-bold" %>
+
+  </div>
+</div>

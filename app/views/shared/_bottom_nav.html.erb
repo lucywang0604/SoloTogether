@@ -17,7 +17,7 @@
     </div>
 
     <div class="flex flex-col items-center">
-      <%= link_to profile_path(current_profile, mode: current_profile.mode) do %>
+      <%= link_to profile_path(current_profile), class: "flex flex-col items-center" do %>
         <div class="w-12 h-12 rounded-full bg-[#BDBDBD]"></div>
         <span class="text-xs mt-1 text-black">Profile</span>
       <% end %>
