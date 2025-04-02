@@ -10,6 +10,7 @@ class Experience < ApplicationRecord
   validates :name, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 0 }
   validates :duration, numericality: { only_integer: true, greater_than: 0 }
+  validates :photo, presence: true
 
   reverse_geocoded_by "cities.latitude", "cities.longitude"
 end

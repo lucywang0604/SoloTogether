@@ -1,2 +1,43 @@
-<h1>Experiences#edit</h1>
-<p>Find me in app/views/experiences/edit.html.erb</p>
+<div class="p-4 bg-white shadow-sm">
+  <div class="flex items-center justify-between gap-4">
+    <div class="flex items-center gap-4">
+      <% if current_profile.avatar.attached? %>
+        <%= cl_image_tag current_profile.avatar.key, class: "h-14 w-14 rounded-full object-cover" %>
+      <% else %>
+        <div class="h-14 w-14 rounded-full bg-purple-200 flex items-center justify-center">
+          <span class="text-purple-700 text-xl"></span>
+        </div>
+      <% end %>
+      <h1 class="text-xl font-semibold text-gray-900"><%= current_profile.name %></h1>
+    </div>
+    <div>
+      <div class="flex gap-1 rounded-full bg-gray-950/5 p-1" role="tablist" aria-orientation="horizontal">
+        <%= link_to local_profile_path(current_profile),
+            class: "group flex items-center rounded-full px-4 text-sm/7 font-medium #{current_profile.mode == 'local' ? 'bg-white ring ring-gray-950/5' : ''}",
+            role: "tab",
+            data: {
+              turbo_method: :patch
+            },
+            "aria-selected": current_profile.mode == "local" do %>
+          Local
+        <% end %>
+
+        <%= link_to visitor_profile_path(current_profile),
+            class: "group flex items-center rounded-full px-4 text-sm/7 font-medium #{current_profile.mode == 'visitor' ? 'bg-white ring ring-gray-950/5' : ''}",
+            role: "tab",
+            data: {
+              turbo_method: :patch
+            },
+            "aria-selected": current_profile.mode == "visitor" do %>
+          Visitor
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="p-4 bg-white shadow-sm">
+  <h1 class="text-xl font-semibold text-gray-900 mb-4">Edit New Experience</h1>
+
+  <%= render "form", experience: @experience %>
+</div>

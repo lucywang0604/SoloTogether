@@ -1,10 +1,11 @@
 class ExperiencesController < ApplicationController
+  before_action :set_experience, only: [:show, :edit, :update, :destroy]
+
   def index
     @experiences = Experience.all
   end
 
   def show
-    @experience = Experience.find(params[:id])
   end
 
   def new
@@ -13,10 +14,11 @@ class ExperiencesController < ApplicationController
 
   def create
     @experience = Experience.new(experience_params)
-    @experience.user = current_user
+    @experience.profile = current_profile
+    @experience.city = current_profile.current_city
 
     if @experience.save
-      redirect_to experience_path(@experience), notice: 'Experience was successfully created.'
+      redirect_to profile_path(current_profile), notice: 'Experience was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -26,14 +28,25 @@ class ExperiencesController < ApplicationController
   end
 
   def update
+    if @experience.update(experience_params)
+      redirect_to profile_path(current_profile), notice: 'Experience was successfully updated.'
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
+    @experience.destroy
+    redirect_to profile_path(current_profile), notice: 'Experience was successfully deleted.'
   end
 
   private
 
+  def set_experience
+    @experience = Experience.find(params[:id])
+  end
+
   def experience_params
-    params.require(:experience).permit(:name, :description, :city, :price)
+    params.require(:experience).permit(:name, :description, :price, :photo, :duration)
   end
 end

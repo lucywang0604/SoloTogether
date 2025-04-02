@@ -8,8 +8,10 @@ Rails.application.routes.draw do
     patch :local, on: :member
   end
 
-  resources :experiences
-  resources :bookings, only: [:index, :show,:create, :destroy]
+  resources :experiences do
+    resources :bookings, only: [:new, :create]
+  end
+  resources :bookings, only: [:index, :show, :create, :destroy]
   resources :friendships, only: [:create, :destroy]
 
   get "webmanifest"    => "pwa#manifest"

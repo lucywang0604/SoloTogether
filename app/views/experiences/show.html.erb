@@ -1,2 +1,77 @@
-<h1>Experiences#show</h1>
-<p>Find me in app/views/experiences/show.html.erb</p>
+<div class="min-h-screen bg-gray-100 pb-20">
+  <!-- Back Button -->
+  <div class="max-w-2xl mx-auto px-4 py-4">
+    <%= link_to experiences_path, class: "flex items-center text-gray-600 hover:text-gray-900" do %>
+      <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+      </svg>
+      Back
+    <% end %>
+  </div>
+
+  <div class="max-w-2xl mx-auto px-4">
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+      <!-- Experience Image -->
+      <div class="w-full h-64 relative">
+        <% if @experience.photo.attached? %>
+          <%= image_tag @experience.photo, class: "w-full h-full object-cover" %>
+        <% else %>
+          <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+            <span class="text-gray-400">No photo available</span>
+          </div>
+        <% end %>
+      </div>
+
+      <!-- Experience Details -->
+      <div class="px-6 py-6">
+        <!-- Title and Location -->
+        <div class="mb-4">
+          <h1 class="text-2xl font-bold text-gray-900 mb-2"><%= @experience.name %></h1>
+          <div class="flex items-center text-gray-600">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+            </svg>
+            <span class="ml-2"><%= @experience.city.name %></span>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="border-t border-gray-200 my-4"></div>
+
+        <!-- Price and Duration -->
+        <div class="grid grid-cols-2 gap-4 mb-4">
+          <div>
+            <p class="text-sm text-gray-500">Price</p>
+            <p class="text-lg font-semibold text-blue-600"><%= number_to_currency(@experience.price) %></p>
+          </div>
+          <div>
+            <p class="text-sm text-gray-500">Duration</p>
+            <p class="text-lg font-semibold">
+              <% if @experience.duration.present? %>
+                <%= "#{(@experience.duration.to_i)} hours" %>
+              <% else %>
+                Not specified
+              <% end %>
+            </p>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="border-t border-gray-200 my-4"></div>
+
+        <!-- Description -->
+        <div>
+          <h2 class="text-lg font-semibold mb-2">About this experience</h2>
+          <p class="text-gray-600"><%= @experience.description %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Book Now Button (Fixed at bottom) -->
+  <div class="fixed bottom-28 left-0 right-0 px-4 py-4">
+    <%= link_to "Book Now", new_experience_booking_path(@experience), class: "block w-full py-3 px-4 text-center bg-[#C14F4F] text-white rounded-lg font-medium hover:bg-blue-700 transition duration-150 ease-in-out" %>
+  </div>
+</div>
+
+<%= render "shared/bottom_nav" %>
