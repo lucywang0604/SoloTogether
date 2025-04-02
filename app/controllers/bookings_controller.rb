@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_booking, only: [:show]
+  before_action :set_booking, only: [:show, :destroy]
 
   def index
     @bookings = current_profile.bookings.order(date: :asc)
@@ -14,6 +14,11 @@ class BookingsController < ApplicationController
   end
 
   def destroy
+    if @booking.destroy
+      redirect_to bookings_path, notice: 'Booking was successfully cancelled.'
+    else
+      redirect_to bookings_path, alert: 'Unable to cancel booking.'
+    end
   end
 
   private
