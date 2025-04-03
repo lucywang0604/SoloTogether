@@ -44,18 +44,20 @@
     <div class="overflow-x-auto snap-x snap-mandatory flex gap-4 scrollbar-hide">
       <% @profiles.each do |profile| %>
         <div class="snap-start shrink-0">
-          <div class="w-64 h-40 rounded-lg overflow-hidden relative">
-            <% if profile.avatar.attached? %>
-              <%= cl_image_tag profile.avatar.key, class: "w-full h-full object-cover" %>
-            <% else %>
-              <div class="w-full h-full bg-gray-200 flex items-center justify-center">
-                <span class="text-gray-400">No photo</span>
+          <%= link_to profile_path(profile) do %>
+            <div class="w-40 h-40 rounded-full overflow-hidden relative">
+              <% if profile.avatar.attached? %>
+                <%= cl_image_tag profile.avatar.key, class: "w-full h-full object-cover" %>
+              <% else %>
+                <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+                  <span class="text-gray-400">No photo</span>
+                </div>
+              <% end %>
+              <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                <h3 class="text-white text-center font-medium"><%= profile.name %></h3>
               </div>
-            <% end %>
-            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
-              <h3 class="text-white font-medium"><%= profile.name %></h3>
             </div>
-          </div>
+          <% end %>
         </div>
       <% end %>
     </div>

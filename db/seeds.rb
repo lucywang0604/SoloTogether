@@ -33,12 +33,12 @@ local_profile.avatar.attach(io: File.open(Rails.root.join("app/assets/images/see
 visitor_profile.avatar.attach(io: File.open(Rails.root.join("app/assets/images/seeds/users/user-2.jpg")), filename: "user-2.jpg", content_type: "image/jpg")
 
 puts "Creating Experiences"
-experience1 = Experience.create!(name: "Croissant workshop", description: "Explore the best local croissant", city: paris, price: 50.00, duration: 4, profile: local_profile)
-experience2 = Experience.create!(name: "Seine River Picnic", description: "Enjoy a picnic along the Seine River with wine tasting.", city: paris, price: 80.00, duration: 2, profile: local_profile)
-experience3 = Experience.create!(name: "Latin Quarter - Rue Mouffetard", description: "Explore rue de Mouffetard of the Latin quarter by night", city: paris, price: 40.00, duration: 2, profile: local_profile)
-experience4 = Experience.create!(name: "Explore Paris Specialty Cafe", description: "Enjoy local roasted coffee", city: paris, price: 25.00, duration: 3, profile: local_profile)
-experience5 = Experience.create!(name: "Walking the paths of Monet", description: "Explore the walking paths of Monet", city: paris, price: 35.00, duration: 4, profile: local_profile)
-experience6 = Experience.create!(name: "Explore the best bookstores", description: "Explore vintage bookstores in Paris", city: paris, price: 25.00, duration: 3, profile: local_profile)
+experience1 = Experience.new(name: "Croissant workshop", description: "Explore the best local croissant", city: paris, price: 50.00, duration: 4, profile: local_profile)
+experience2 = Experience.new(name: "Seine River Picnic", description: "Enjoy a picnic along the Seine River with wine tasting.", city: paris, price: 80.00, duration: 2, profile: local_profile)
+experience3 = Experience.new(name: "Latin Quarter - Rue Mouffetard", description: "Explore rue de Mouffetard of the Latin quarter by night", city: paris, price: 40.00, duration: 2, profile: local_profile)
+experience4 = Experience.new(name: "Explore Paris Specialty Cafe", description: "Enjoy local roasted coffee", city: paris, price: 25.00, duration: 3, profile: local_profile)
+experience5 = Experience.new(name: "Walking the paths of Monet", description: "Explore the walking paths of Monet", city: paris, price: 35.00, duration: 4, profile: local_profile)
+experience6 = Experience.new(name: "Explore the best bookstores", description: "Explore vintage bookstores in Paris", city: paris, price: 25.00, duration: 3, profile: local_profile)
 
 experience1.photo.attach(io: File.open(Rails.root.join("app/assets/images/seeds/experiences/croissants.jpg")), filename: "croissants.jpg", content_type: "image/jpg")
 experience2.photo.attach(io: File.open(Rails.root.join("app/assets/images/seeds/experiences/picnic.jpg")), filename: "picnic.jpg", content_type: "image/jpg")
@@ -46,6 +46,13 @@ experience3.photo.attach(io: File.open(Rails.root.join("app/assets/images/seeds/
 experience4.photo.attach(io: File.open(Rails.root.join("app/assets/images/seeds/experiences/coffee.jpg")), filename: "coffee.jpg", content_type: "image/jpg")
 experience5.photo.attach(io: File.open(Rails.root.join("app/assets/images/seeds/experiences/monet.jpg")), filename: "monet.jpg", content_type: "image/jpg")
 experience6.photo.attach(io: File.open(Rails.root.join("app/assets/images/seeds/experiences/bookstore.jpg")), filename: "bookstore.jpg", content_type: "image/jpg")
+
+experience1.save!
+experience2.save!
+experience3.save!
+experience4.save!
+experience5.save!
+experience6.save!
 
 puts "Creating a Booking"
 booking1 = Booking.create!(date: DateTime.now, experience: experience1, profile: visitor_profile)

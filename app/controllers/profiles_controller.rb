@@ -7,14 +7,18 @@ class ProfilesController < ApplicationController
   def show
   end
 
+  def me
+    @profile = current_user.profile
+  end
+
   def visitor
     @profile.visitor!
-    redirect_to profile_path(@profile)
+    redirect_to me_path
   end
 
   def local
     @profile.local!
-    redirect_to profile_path(@profile)
+    redirect_to me_path
   end
 
   private

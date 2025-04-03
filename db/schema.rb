@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_04_01_121336) do
+ActiveRecord::Schema[7.1].define(version: 2025_04_03_095518) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -73,11 +73,25 @@ ActiveRecord::Schema[7.1].define(version: 2025_04_01_121336) do
     t.index ["profile_id"], name: "index_experiences_on_profile_id"
   end
 
-  create_table "friendships", force: :cascade do |t|
-    t.integer "profile_id_one"
-    t.integer "profile_id_two"
+  create_table "friend_requests", force: :cascade do |t|
+    t.bigint "sender_id", null: false
+    t.bigint "receiver_id", null: false
+    t.string "status", default: "pending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["receiver_id"], name: "index_friend_requests_on_receiver_id"
+    t.index ["sender_id", "receiver_id"], name: "index_friend_requests_on_sender_id_and_receiver_id", unique: true
+    t.index ["sender_id"], name: "index_friend_requests_on_sender_id"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.bigint "profile_id", null: false
+    t.bigint "friend_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["friend_id"], name: "index_friendships_on_friend_id"
+    t.index ["profile_id", "friend_id"], name: "index_friendships_on_profile_id_and_friend_id", unique: true
+    t.index ["profile_id"], name: "index_friendships_on_profile_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -128,6 +142,10 @@ ActiveRecord::Schema[7.1].define(version: 2025_04_01_121336) do
   add_foreign_key "bookings", "profiles"
   add_foreign_key "experiences", "cities"
   add_foreign_key "experiences", "profiles"
+  add_foreign_key "friend_requests", "profiles", column: "receiver_id"
+  add_foreign_key "friend_requests", "profiles", column: "sender_id"
+  add_foreign_key "friendships", "profiles"
+  add_foreign_key "friendships", "profiles", column: "friend_id"
   add_foreign_key "profiles", "cities", column: "current_city_id"
   add_foreign_key "profiles", "cities", column: "original_city_id"
   add_foreign_key "profiles", "users"

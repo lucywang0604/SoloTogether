@@ -1,0 +1,165 @@
+<div class="p-4 bg-white shadow-sm">
+  <div class="flex items-center justify-between gap-4">
+    <div class="flex items-center gap-4">
+      <% if @profile.avatar.attached? %>
+        <%= cl_image_tag @profile.avatar.key, class: "h-14 w-14 rounded-full object-cover" %>
+      <% else %>
+        <div class="h-14 w-14 rounded-full bg-purple-200 flex items-center justify-center">
+          <span class="text-purple-700 text-xl"></span>
+        </div>
+      <% end %>
+      <h1 class="text-xl font-semibold text-gray-900"><%= @profile.name %></h1>
+    </div>
+    <div class="flex gap-2">
+      <%= button_to "Visitor", visitor_profile_path(@profile), method: :patch, class: "py-2 px-4 text-center #{@profile.visitor? ? 'bg-[#C14F4F] text-white' : 'bg-gray-200 text-gray-600'} rounded-lg font-medium" %>
+      <%= button_to "Local", local_profile_path(@profile), method: :patch, class: "py-2 px-4 text-center #{@profile.local? ? 'bg-[#C14F4F] text-white' : 'bg-gray-200 text-gray-600'} rounded-lg font-medium" %>
+    </div>
+  </div>
+</div>
+
+<div class="mt-4">
+  <% if @profile.received_friend_requests.any? %>
+    <div class="bg-white p-4 rounded-lg shadow-sm mb-4">
+      <h2 class="text-lg font-semibold text-gray-900 mb-4">Friend Requests</h2>
+      <div class="grid grid-cols-1 gap-4">
+        <% @profile.received_friend_requests.each do |friend_request| %>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <% if friend_request.sender.avatar.attached? %>
+                <%= cl_image_tag friend_request.sender.avatar.key, class: "h-10 w-10 rounded-full object-cover" %>
+              <% else %>
+                <div class="h-10 w-10 rounded-full bg-purple-200 flex items-center justify-center">
+                  <span class="text-purple-700 text-xl"></span>
+                </div>
+              <% end %>
+              <span class="font-medium"><%= friend_request.sender.name %></span>
+            </div>
+            <div class="flex gap-2">
+              <%= button_to "Accept", profile_friend_request_path(@profile, friend_request), method: :patch, class: "py-2 px-4 text-center bg-green-500 text-white rounded-lg font-medium hover:bg-green-600 transition duration-150 ease-in-out" %>
+              <%= button_to "Decline", profile_friend_request_path(@profile, friend_request), method: :delete, class: "py-2 px-4 text-center bg-red-500 text-white rounded-lg font-medium hover:bg-red-600 transition duration-150 ease-in-out" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="mt-4">
+  <h2 class="text-lg font-semibold text-gray-900 mb-2 px-4">My Friends</h2>
+  <div class="relative pl-4">
+    <div class="overflow-x-auto snap-x snap-mandatory flex gap-4 scrollbar-hide">
+      <% @profile.all_friends.each do |friend| %>
+        <div class="snap-start shrink-0">
+          <%= link_to profile_path(friend) do %>
+            <div class="w-20 h-20 rounded-full overflow-hidden relative">
+              <% if friend.avatar.attached? %>
+                <%= cl_image_tag friend.avatar.key, class: "w-full h-full object-cover" %>
+              <% else %>
+                <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+                  <span class="text-gray-400">No photo</span>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<% if @profile.mode == "local" %>
+  <div class="mt-4 px-4">
+    <h2 class="text-lg font-semibold text-gray-900 mb-2">My City</h2>
+    <div data-controller="map" data-map-latitude-value="<%= @profile.current_city.latitude %>" data-map-longitude-value="<%= @profile.current_city.longitude %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>" style="width: 100%; height: 200px;" class="rounded-lg"></div>
+  </div>
+
+   <div class="mt-4">
+    <div class="flex items-center justify-between px-4">
+      <h2 class="text-lg font-semibold text-gray-900">My Experiences</h2>
+      <%= link_to "Create Experience", new_experience_path, class: "py-2 px-4 text-center bg-[#C14F4F] text-white rounded-lg font-medium hover:bg-blue-700 transition duration-150 ease-in-out" %>
+    </div>
+    <div class="relative pt-4 pl-4">
+      <div class="overflow-x-auto snap-x snap-mandatory flex gap-4 scrollbar-hide">
+        <% @profile.experiences.order(created_at: :desc).each do |experience| %>
+          <%= link_to edit_experience_path(experience), class: "block" do %>
+            <div class="snap-start shrink-0">
+              <div class="w-64 h-40 rounded-lg overflow-hidden relative">
+                <% if experience.photo.attached? %>
+                  <%= cl_image_tag experience.photo.key, class: "w-full h-full object-cover" %>
+                <% else %>
+                  <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+                    <span class="text-gray-400">No photo</span>
+                  </div>
+                <% end %>
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                  <h3 class="text-white font-medium"><%= experience.name %></h3>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="mt-4">
+    <h2 class="text-lg font-semibold text-gray-900 mb-2 px-4">Visited Cities</h2>
+    <div class="relative pl-4">
+      <div class="overflow-x-auto snap-x snap-mandatory flex gap-4 scrollbar-hide">
+        <% @profile.visited_cities.each do |city| %>
+          <div class="snap-start shrink-0">
+            <div class="w-64 h-40 rounded-lg overflow-hidden relative">
+              <% if city.photo.attached? %>
+                <%= cl_image_tag city.photo.key, class: "w-full h-full object-cover" %>
+              <% else %>
+                <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+                  <span class="text-gray-400">No photo</span>
+                </div>
+              <% end %>
+              <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                <h3 class="text-white font-medium"><%= city.name %></h3>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-4 px-4">
+    <h2 class="text-lg font-semibold text-gray-900 mb-2">Current City</h2>
+    <div data-controller="map" data-map-latitude-value="<%= @profile.current_city.latitude %>" data-map-longitude-value="<%= @profile.current_city.longitude %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>" style="width: 100%; height: 200px;" class="rounded-lg"></div>
+  </div>
+
+  <div class="mt-4">
+    <h2 class="text-lg font-semibold text-gray-900 mb-2 px-4">
+      <%= link_to "Bookings", bookings_path, class: "hover:text-purple-600" %>
+    </h2>
+    <div class="relative pl-4">
+      <div class="overflow-x-auto snap-x snap-mandatory flex gap-4 scrollbar-hide">
+        <% @profile.bookings.each do |booking| %>
+          <div class="snap-start shrink-0">
+            <div class="w-64 h-40 rounded-lg overflow-hidden relative">
+              <% if booking.experience.photo.attached? %>
+                <%= cl_image_tag booking.experience.photo.key, class: "w-full h-full object-cover" %>
+              <% else %>
+                <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+                  <span class="text-gray-400">No photo</span>
+                </div>
+              <% end %>
+              <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                <h3 class="text-white font-medium"><%= booking.experience.name %></h3>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+
+<%= render "shared/bottom_nav" %>
