@@ -12,3 +12,6 @@ application.register("map", MapController)
 
 import ImagePreviewController from "./image_preview_controller"
 application.register("image-preview", ImagePreviewController)
+
+import BiographyController from "./biography_controller"
+application.register("biography", BiographyController)

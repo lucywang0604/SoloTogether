@@ -96,6 +96,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_04_03_095518) do
 
   create_table "profiles", force: :cascade do |t|
     t.string "name"
+    t.string "biography"
     t.string "mode"
     t.bigint "current_city_id"
     t.bigint "original_city_id"

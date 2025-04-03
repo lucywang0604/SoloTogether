@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:show, :visitor, :local]
+  before_action :set_profile, only: [:show, :visitor, :local, :update]
 
   def index
   end
@@ -21,9 +21,21 @@ class ProfilesController < ApplicationController
     redirect_to me_path
   end
 
+  def update
+    if @profile.update(profile_params)
+      render json: { biography: @profile.biography }
+    else
+      render json: { errors: @profile.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def set_profile
     @profile = Profile.find(params[:id])
+  end
+
+  def profile_params
+    params.require(:profile).permit(:biography)
   end
 end

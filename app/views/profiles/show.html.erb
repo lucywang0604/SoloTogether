@@ -43,6 +43,16 @@
   </div>
 </div>
 
+<div class="mt-4 px-4">
+  <div class="flex items-center justify-between mb-2">
+    <h2 class="text-lg font-semibold text-gray-900">Biography</h2>
+  </div>
+
+  <div class="text-gray-600">
+    <%= @profile.biography.presence || "No biography yet" %>
+  </div>
+</div>
+
 <div class="mt-4">
   <div class="flex items-center justify-between px-4">
     <h2 class="text-lg font-semibold text-gray-900">Experiences</h2>

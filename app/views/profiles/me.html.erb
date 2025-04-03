@@ -17,6 +17,39 @@
   </div>
 </div>
 
+<div class="mt-4 px-4" data-controller="biography">
+  <div class="flex items-center justify-between mb-2">
+    <h2 class="text-lg font-semibold text-gray-900">Biography</h2>
+    <button data-action="biography#showForm" class="text-sm text-gray-600 hover:text-gray-900">
+      Edit
+    </button>
+  </div>
+
+  <div data-biography-target="display" class="text-gray-600">
+    <%= @profile.biography.presence || "No biography yet" %>
+  </div>
+
+  <%= form_with(model: @profile, url: profile_path(@profile), class: "hidden", data: { biography_target: "form", action: "submit->biography#save" }) do |f| %>
+    <div class="space-y-4">
+      <%= f.text_area :biography,
+          class: "w-full rounded-lg border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500",
+          rows: 4,
+          placeholder: "Write something about yourself...",
+          data: { biography_target: "input" } %>
+
+      <div class="flex justify-end gap-2">
+        <button type="button"
+                data-action="biography#cancel"
+                class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+          Cancel
+        </button>
+        <%= f.submit "Save",
+            class: "px-4 py-2 text-sm font-medium text-white bg-[#C14F4F] border border-transparent rounded-md shadow-sm hover:bg-[#B13F3F] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
 <div class="mt-4">
   <% if @profile.received_friend_requests.any? %>
     <div class="bg-white p-4 rounded-lg shadow-sm mb-4">
@@ -48,25 +81,33 @@
 <div class="mt-4">
   <h2 class="text-lg font-semibold text-gray-900 mb-2 px-4">My Friends</h2>
   <div class="relative pl-4">
-    <div class="overflow-x-auto snap-x snap-mandatory flex gap-4 scrollbar-hide">
-      <% @profile.all_friends.each do |friend| %>
-        <div class="snap-start shrink-0">
-          <%= link_to profile_path(friend) do %>
-            <div class="w-20 h-20 rounded-full overflow-hidden relative">
-              <% if friend.avatar.attached? %>
-                <%= cl_image_tag friend.avatar.key, class: "w-full h-full object-cover" %>
-              <% else %>
-                <div class="w-full h-full bg-gray-200 flex items-center justify-center">
-                  <span class="text-gray-400">No photo</span>
-                </div>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
+    <% if @profile.all_friends.any? %>
+      <div class="overflow-x-auto snap-x snap-mandatory flex gap-4 scrollbar-hide">
+        <% @profile.all_friends.each do |friend| %>
+          <div class="snap-start shrink-0">
+            <%= link_to profile_path(friend) do %>
+              <div class="w-20 h-20 rounded-full overflow-hidden relative">
+                <% if friend.avatar.attached? %>
+                  <%= cl_image_tag friend.avatar.key, class: "w-full h-full object-cover" %>
+                <% else %>
+                  <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+                    <span class="text-gray-400">No photo</span>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="bg-gray-50 rounded-lg p-8 text-center">
+        <p class="text-gray-500">You don't have any friends yet. Start connecting with other users!</p>
+      </div>
+    <% end %>
   </div>
 </div>
+
+
 
 
 <% if @profile.mode == "local" %>
