@@ -15,3 +15,6 @@ application.register("image-preview", ImagePreviewController)
 
 import BiographyController from "./biography_controller"
 application.register("biography", BiographyController)
+
+import PostModalController from "./post_modal_controller"
+application.register("post-modal", PostModalController)

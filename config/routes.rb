@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   end
   resources :bookings, only: [:index, :show, :create, :destroy]
 
+  resources :posts, except: [:index, :show]
+
 
   get "webmanifest"    => "pwa#manifest"
   get "service-worker" => "pwa#service_worker"

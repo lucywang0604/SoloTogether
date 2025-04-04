@@ -8,5 +8,6 @@ class PagesController < ApplicationController
     #             .where(mode: "local")
 
     @profiles = Profile.all.where.not(id: current_user.profile.id)
+    @posts = Post.includes(:profile).order(created_at: :desc)
   end
 end

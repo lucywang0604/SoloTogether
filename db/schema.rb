@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_04_03_095518) do
+ActiveRecord::Schema[7.1].define(version: 2025_04_04_092514) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -94,6 +94,16 @@ ActiveRecord::Schema[7.1].define(version: 2025_04_03_095518) do
     t.index ["profile_id"], name: "index_friendships_on_profile_id"
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.string "location"
+    t.text "body"
+    t.bigint "profile_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_posts_on_profile_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.string "name"
     t.string "biography"
@@ -147,6 +157,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_04_03_095518) do
   add_foreign_key "friend_requests", "profiles", column: "sender_id"
   add_foreign_key "friendships", "profiles"
   add_foreign_key "friendships", "profiles", column: "friend_id"
+  add_foreign_key "posts", "profiles"
   add_foreign_key "profiles", "cities", column: "current_city_id"
   add_foreign_key "profiles", "cities", column: "original_city_id"
   add_foreign_key "profiles", "users"
