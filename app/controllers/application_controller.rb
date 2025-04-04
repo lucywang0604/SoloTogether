@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
     @current_profile ||= Profile.find_by(user: current_user) if current_user
   end
 
+  def after_sign_in_path_for(resource)
+    root_path # This will redirect to home page
+  end
+
   private
 
   def configure_permitted_parameters
