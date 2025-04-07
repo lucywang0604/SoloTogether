@@ -7,9 +7,9 @@ class FriendRequestsController < ApplicationController
     @friend_request = current_user.profile.sent_friend_requests.build(receiver: @profile)
 
     if @friend_request.save
-      redirect_to profile_path(@profile), notice: 'Friend request sent!'
+      redirect_back(fallback_location: me_path, notice: 'Friend request sent!')
     else
-      redirect_to profile_path(@profile), alert: 'Unable to send friend request.'
+      redirect_back(fallback_location: me_path, alert: 'Unable to send friend request.')
     end
   end
 

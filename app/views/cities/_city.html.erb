@@ -1,4 +1,4 @@
-<%= link_to city_path(city), class: "block my-4" do %>
+<%= link_to city_path(city), class: "block my-4", data: { turbo_frame: "_top" } do %>
   <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
     <div class="aspect-w-16 aspect-h-9 w-full">
       <% if city.photo.attached? %>

@@ -24,3 +24,6 @@ application.register("datepicker", DatepickerController)
 
 import SearchFormController from "./search_form_controller"
 application.register("search-form", SearchFormController)
+
+import ModalController from "./modal_controller"
+application.register("modal", ModalController)

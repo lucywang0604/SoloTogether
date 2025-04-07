@@ -1,0 +1,78 @@
+<div class="min-h-screen bg-gray-100 py-8 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <%= link_to :back, class: "inline-flex items-center text-gray-600 hover:text-gray-900 mb-6" do %>
+      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+      </svg>
+      <span>Back</span>
+    <% end %>
+
+    <!-- Header Section -->
+    <div class="flex justify-between items-center mb-8">
+      <h1 class="text-3xl font-bold text-gray-900">Experiences in <%= @city.name %></h1>
+    </div>
+
+    <!-- Experiences Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <% @experiences.each do |experience| %>
+        <%= link_to experience_path(experience), class: "block" do %>
+          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+            <!-- Add photo section -->
+            <div class="aspect-w-16 aspect-h-9 w-full">
+              <% if experience.photo.attached? %>
+                <%= image_tag experience.photo, class: "w-full h-40 object-cover" %>
+              <% else %>
+                <div class="w-full h-40 bg-gray-200 flex items-center justify-center">
+                  <span class="text-gray-400">No photo available</span>
+                </div>
+              <% end %>
+            </div>
+
+            <div class="p-4">
+              <h3 class="text-lg font-semibold text-gray-900 mb-2"><%= experience.name %></h3>
+              <p class="text-gray-600 mb-3 text-sm"><%= truncate(experience.description, length: 100) %></p>
+
+              <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                  <svg class="h-4 w-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  </svg>
+                  <span class="ml-2 text-gray-600 text-sm"><%= experience.city.name %></span>
+                </div>
+                <span class="text-blue-600 font-semibold text-sm">
+                  <%= number_to_currency(experience.price) %>
+                </span>
+              </div>
+
+              <div class="mt-3 flex items-center justify-between">
+                <div class="flex items-center text-sm text-gray-500">
+                  <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                  </svg>
+                  <span class="ml-2">Anytime</span>
+                </div>
+                <div class="flex items-center text-sm text-gray-500">
+                  <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  <span class="ml-2"><%= (experience.duration).to_i %> hours</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <!-- Empty State -->
+    <% if @experiences.empty? %>
+      <div class="text-center py-12">
+        <h3 class="text-lg font-medium text-gray-900 mb-2">No experiences yet</h3>
+        <p class="text-gray-500">Be the first to create an experience!</p>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= render "shared/bottom_nav" %>

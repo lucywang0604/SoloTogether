@@ -29,83 +29,83 @@ puts "Creating Users"
 user_profile_data = [
   {
     user: { email: "lucy@gmail.com", password: "password" },
-    profile: { name: "Lucy Wang", image_url: "https://images.unsplash.com/photo-1494790108377-be9c29b29330", current_city: paris, original_city: tokyo, mode: "visitor" }
+    profile: { name: "Lucy Wang", image_url: "https://images.unsplash.com/photo-1494790108377-be9c29b29330", current_city: paris, original_city: tokyo, mode: "visitor", birthdate: (rand(18..60).years.ago + rand(1..12).months), spoken_languages: ["English", "Mandarin"], sex: "female" }
   },
   {
     user: { email: "john@gmail.com", password: "password" },
-    profile: { name: "John Doe", image_url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e", current_city: london, original_city: paris, mode: "local" }
+    profile: { name: "John Doe", image_url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e", current_city: london, original_city: paris, mode: "local", birthdate: (rand(18..60).years.ago + rand(1..12).months), spoken_languages: ["English"], sex: "male" }
   },
   {
     user: { email: "jane@gmail.com", password: "password" },
-    profile: { name: "Jane Doe", image_url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb", current_city: paris, original_city: tokyo, mode: "visitor" }
+    profile: { name: "Jane Doe", image_url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb", current_city: paris, original_city: tokyo, mode: "visitor", birthdate: (rand(18..60).years.ago + rand(1..12).months), spoken_languages: ["English"], sex: "female" }
   },
   {
     user: { email: "mike@gmail.com", password: "password" },
-    profile: { name: "Mike Doe", image_url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d", current_city: paris, original_city: paris, mode: "local" }
+    profile: { name: "Mike Doe", image_url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d", current_city: paris, original_city: paris, mode: "local", birthdate: (rand(18..60).years.ago + rand(1..12).months), spoken_languages: ["English", "French"], sex: "male" }
   },
   {
     user: { email: "emma.thompson@gmail.com", password: "password" },
-    profile: { name: "Emma Thompson", image_url: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80", current_city: paris, original_city: tokyo, mode: "visitor" }
+    profile: { name: "Emma Thompson", image_url: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80", current_city: paris, original_city: tokyo, mode: "visitor", birthdate: (rand(18..60).years.ago + rand(1..12).months), spoken_languages: ["English"], sex: "female" }
   },
   {
     user: { email: "l.martinez83@gmail.com", password: "password" },
-    profile: { name: "Lucas Martinez", image_url: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d", current_city: london, original_city: paris, mode: "local" }
+    profile: { name: "Lucas Martinez", image_url: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d", current_city: london, original_city: paris, mode: "local", birthdate: (rand(18..60).years.ago + rand(1..12).months), spoken_languages: ["English", "Spanish"], sex: "male" }
   },
   {
     user: { email: "sofia.chen@gmail.com", password: "password" },
-    profile: { name: "Sofia Chen", image_url: "https://images.unsplash.com/photo-1517841905240-472988babdf9", current_city: paris, original_city: tokyo, mode: "visitor" }
+    profile: { name: "Sofia Chen", image_url: "https://images.unsplash.com/photo-1517841905240-472988babdf9", current_city: paris, original_city: tokyo, mode: "visitor", birthdate: (rand(18..60).years.ago + rand(1..12).months), spoken_languages: ["English", "Mandarin"], sex: "female" }
   },
   {
     user: { email: "alex.wright@gmail.com", password: "password" },
-    profile: { name: "Alexander Wright", image_url: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e", current_city: london, original_city: paris, mode: "local" }
+    profile: { name: "Alexander Wright", image_url: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e", current_city: london, original_city: paris, mode: "local", birthdate: (rand(18..60).years.ago + rand(1..12).months), spoken_languages: ["English"], sex: "male" }
   },
   {
     user: { email: "bella.santos@gmail.com", password: "password" },
-    profile: { name: "Isabella Santos", image_url: "https://images.unsplash.com/photo-1544005313-94ddf0286df2", current_city: paris, original_city: tokyo, mode: "visitor" }
+    profile: { name: "Isabella Santos", image_url: "https://images.unsplash.com/photo-1544005313-94ddf0286df2", current_city: paris, original_city: tokyo, mode: "visitor", birthdate: (rand(18..60).years.ago + rand(1..12).months), spoken_languages: ["English", "Portuguese"], sex: "female" }
   },
   {
     user: { email: "ethan.p@gmail.com", password: "password" },
-    profile: { name: "Ethan Patel", image_url: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef", current_city: london, original_city: paris, mode: "local" }
+    profile: { name: "Ethan Patel", image_url: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef", current_city: london, original_city: paris, mode: "local", birthdate: (rand(18..60).years.ago + rand(1..12).months), spoken_languages: ["English", "Hindi"], sex: "male" }
   },
   {
     user: { email: "olivia.kim92@gmail.com", password: "password" },
-    profile: { name: "Olivia Kim", image_url: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce", current_city: paris, original_city: tokyo, mode: "visitor" }
+    profile: { name: "Olivia Kim", image_url: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce", current_city: paris, original_city: tokyo, mode: "visitor", birthdate: (rand(18..60).years.ago + rand(1..12).months), spoken_languages: ["English", "Korean"], sex: "female" }
   },
   {
     user: { email: "will.anderson@gmail.com", password: "password" },
-    profile: { name: "William Anderson", image_url: "https://images.unsplash.com/photo-1463453091185-61582044d556", current_city: london, original_city: paris, mode: "local" }
+    profile: { name: "William Anderson", image_url: "https://images.unsplash.com/photo-1463453091185-61582044d556", current_city: london, original_city: paris, mode: "local", birthdate: (rand(18..60).years.ago + rand(1..12).months), spoken_languages: ["English"], sex: "male" }
   },
   {
     user: { email: "ava.rodriguez@gmail.com", password: "password" },
-    profile: { name: "Ava Rodriguez", image_url: "https://images.unsplash.com/photo-1557296387-5358ad7997bb", current_city: paris, original_city: tokyo, mode: "visitor" }
+    profile: { name: "Ava Rodriguez", image_url: "https://images.unsplash.com/photo-1557296387-5358ad7997bb", current_city: paris, original_city: tokyo, mode: "visitor", birthdate: (rand(18..60).years.ago + rand(1..12).months), spoken_languages: ["English", "Spanish"], sex: "female" }
   },
   {
     user: { email: "noah.c@gmail.com", password: "password" },
-    profile: { name: "Noah Campbell", image_url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e", current_city: london, original_city: paris, mode: "local" }
+    profile: { name: "Noah Campbell", image_url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e", current_city: london, original_city: paris, mode: "local", birthdate: (rand(18..60).years.ago + rand(1..12).months), spoken_languages: ["English"], sex: "male" }
   },
   {
     user: { email: "s.nguyen@gmail.com", password: "password" },
-    profile: { name: "Sophia Nguyen", image_url: "https://images.unsplash.com/photo-1494790108377-be9c29b29330", current_city: paris, original_city: tokyo, mode: "visitor" }
+    profile: { name: "Sophia Nguyen", image_url: "https://images.unsplash.com/photo-1494790108377-be9c29b29330", current_city: paris, original_city: tokyo, mode: "visitor", birthdate: (rand(18..60).years.ago + rand(1..12).months), spoken_languages: ["English", "Vietnamese"], sex: "female" }
   },
   {
     user: { email: "james.oconnor@gmail.com", password: "password" },
-    profile: { name: "James O'Connor", image_url: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d", current_city: london, original_city: paris, mode: "local" }
+    profile: { name: "James O'Connor", image_url: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d", current_city: london, original_city: paris, mode: "local", birthdate: (rand(18..60).years.ago + rand(1..12).months), spoken_languages: ["English"], sex: "male" }
   },
   {
     user: { email: "mia.garcia@gmail.com", password: "password" },
-    profile: { name: "Mia Garcia", image_url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb", current_city: paris, original_city: tokyo, mode: "visitor" }
+    profile: { name: "Mia Garcia", image_url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb", current_city: paris, original_city: tokyo, mode: "visitor", birthdate: (rand(18..60).years.ago + rand(1..12).months), spoken_languages: ["English", "Spanish"], sex: "female" }
   },
   {
     user: { email: "ben.lee@gmail.com", password: "password" },
-    profile: { name: "Benjamin Lee", image_url: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e", current_city: london, original_city: paris, mode: "local" }
+    profile: { name: "Benjamin Lee", image_url: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e", current_city: london, original_city: paris, mode: "local", birthdate: (rand(18..60).years.ago + rand(1..12).months), spoken_languages: ["English", "Korean"], sex: "male" }
   },
   {
     user: { email: "char.wilson@gmail.com", password: "password" },
-    profile: { name: "Charlotte Wilson", image_url: "https://images.unsplash.com/photo-1517841905240-472988babdf9", current_city: paris, original_city: tokyo, mode: "visitor" }
+    profile: { name: "Charlotte Wilson", image_url: "https://images.unsplash.com/photo-1517841905240-472988babdf9", current_city: paris, original_city: tokyo, mode: "visitor", birthdate: (rand(18..60).years.ago + rand(1..12).months), spoken_languages: ["English"], sex: "female" }
   },
   {
     user: { email: "d.cohen@gmail.com", password: "password" },
-    profile: { name: "Daniel Cohen", image_url: "https://images.unsplash.com/photo-1463453091185-61582044d556", current_city: london, original_city: paris, mode: "local" }
+    profile: { name: "Daniel Cohen", image_url: "https://images.unsplash.com/photo-1463453091185-61582044d556", current_city: london, original_city: paris, mode: "local", birthdate: (rand(18..60).years.ago + rand(1..12).months), spoken_languages: ["English", "Hebrew"], sex: "male" }
   }
 ]
 
@@ -117,6 +117,9 @@ users = user_profile_data.map do |data|
     mode: data[:profile][:mode],
     current_city: data[:profile][:current_city],
     original_city: data[:profile][:original_city],
+    sex: data[:profile][:sex],
+    spoken_languages: data[:profile][:spoken_languages],
+    birthdate: data[:profile][:birthdate],
     user: user
   )
 

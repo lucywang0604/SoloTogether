@@ -26,9 +26,19 @@ class Profile < ApplicationRecord
     local: "local"
   }
 
+  enum sex: {
+    male: "male",
+    female: "female"
+  }
+
   has_one_attached :avatar
 
   reverse_geocoded_by "cities.latitude", "cities.longitude"
+
+  def age
+    return 0 unless birthdate
+    ((Date.today - birthdate) / 365.25).to_i
+  end
 
   def all_friends
     friends + inverse_friends

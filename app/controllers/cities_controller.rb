@@ -14,5 +14,6 @@ class CitiesController < ApplicationController
 
   def show
     @city = City.find(params[:id])
+    @experiences = @city.experiences
   end
 end
