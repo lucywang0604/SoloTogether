@@ -12,9 +12,9 @@ Rails.application.routes.draw do
   get "/me", to: "profiles#me", as: :me
 
   resources :experiences do
-    resources :bookings, only: [:new, :create]
+    resources :bookings, only: [:create]
   end
-  resources :bookings, only: [:index, :show, :create, :destroy]
+  resources :bookings, only: [:index, :show, :destroy]
 
   resources :posts, except: [:index, :show]
 

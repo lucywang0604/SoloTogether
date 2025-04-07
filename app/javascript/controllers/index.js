@@ -18,3 +18,6 @@ application.register("biography", BiographyController)
 
 import PostModalController from "./post_modal_controller"
 application.register("post-modal", PostModalController)
+
+import DatepickerController from "./datepicker_controller"
+application.register("datepicker", DatepickerController)
