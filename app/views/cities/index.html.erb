@@ -1,0 +1,32 @@
+<div class="min-h-screen bg-gray-100 py-8 px-4 sm:px-6 lg:px-8">
+
+  <div class="max-w-7xl mx-auto">
+    <!-- Search Form -->
+    <div class="mb-8">
+      <%= form_with url: cities_path, method: :get, class: "flex gap-4", data: { controller: "search-form", turbo_frame: "cities" } do |f| %>
+        <div class="flex-1">
+          <%= f.text_field :query,
+            class: "block w-full rounded-lg border-gray-300 shadow-sm focus:border-[#C14F4F] focus:ring-[#C14F4F]",
+            placeholder: "Search cities...",
+            autocomplete: "off",
+            value: params[:query],
+            data: { action: "input->search-form#submit" }
+          %>
+        </div>
+      <% end %>
+    </div>
+    <!-- Header Section -->
+    <div class="flex justify-between items-center">
+      <h1 class="text-3xl font-bold text-gray-900">Cities</h1>
+    </div>
+    <!-- Cities Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <%= turbo_frame_tag "cities" do %>
+        <% render @cities %>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+
+<%= render "shared/bottom_nav" %>

@@ -3,6 +3,7 @@ Profile.destroy_all
 Experience.destroy_all
 Booking.destroy_all
 Review.destroy_all
+City.destroy_all
 
 
 puts "Creating Cities"

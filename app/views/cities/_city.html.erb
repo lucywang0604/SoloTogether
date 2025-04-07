@@ -1,0 +1,16 @@
+<%= link_to city_path(city), class: "block my-4" do %>
+  <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+    <div class="aspect-w-16 aspect-h-9 w-full">
+      <% if city.photo.attached? %>
+        <%= image_tag city.photo, class: "w-full h-40 object-cover" %>
+      <% else %>
+        <div class="w-full h-40 bg-gray-200 flex items-center justify-center">
+          <span class="text-gray-400">No photo available</span>
+        </div>
+      <% end %>
+    </div>
+    <div class="p-4">
+      <h3 class="text-lg font-semibold text-gray-900"><%= city.name %></h3>
+    </div>
+  </div>
+<% end %>

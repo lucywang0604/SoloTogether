@@ -21,3 +21,6 @@ application.register("post-modal", PostModalController)
 
 import DatepickerController from "./datepicker_controller"
 application.register("datepicker", DatepickerController)
+
+import SearchFormController from "./search_form_controller"
+application.register("search-form", SearchFormController)

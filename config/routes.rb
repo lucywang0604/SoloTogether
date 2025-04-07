@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   resources :experiences do
     resources :bookings, only: [:create]
   end
+
+  resources :cities, only: [:index, :show]
   resources :bookings, only: [:index, :show, :destroy]
 
   resources :posts, except: [:index, :show]
