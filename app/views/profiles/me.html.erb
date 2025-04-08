@@ -19,6 +19,85 @@
 
 
 
+<div class="mt-4 px-4" data-controller="profile-details">
+  <div class="flex items-center justify-between mb-2">
+    <h2 class="text-lg font-semibold text-gray-900">Personal Details</h2>
+    <button data-action="profile-details#showForm" class="text-sm text-gray-600 hover:text-gray-900">
+      Edit
+    </button>
+  </div>
+
+  <div data-profile-details-target="display" class="text-gray-600">
+    <div class="flex items-center gap-4">
+      <div>
+        <p class="text-sm text-gray-500">
+          <%= @profile.age %> years old • <%= @profile.sex %>
+        </p>
+      </div>
+
+      <div class="flex flex-wrap gap-1">
+        <% @profile.spoken_languages.each do |language| %>
+          <span class="px-2 py-0.5 bg-gray-100 text-gray-600 text-xs rounded-full">
+            <%= language.upcase %>
+          </span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <%= form_with(model: @profile, url: profile_path(@profile), class: "hidden", data: { profile_details_target: "form", action: "submit->profile-details#save" }) do |f| %>
+    <div class="space-y-4">
+      <div>
+        <%= f.label :birthdate, "Birth Date", class: "block text-sm font-medium text-gray-700" %>
+        <%= f.date_field :birthdate,
+            class: "w-full rounded-lg border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500",
+            data: { profile_details_target: "birthdate" } %>
+      </div>
+
+      <div>
+        <%= f.label :sex, class: "block text-sm font-medium text-gray-700" %>
+        <%= f.select :sex,
+            Profile.sexes.keys.map { |s| [s.titleize, s] },
+            {},
+            class: "w-full rounded-lg border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500",
+            data: { profile_details_target: "sex" } %>
+      </div>
+
+      <div>
+        <%= f.label :spoken_languages, class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <div class="flex flex-wrap gap-2">
+          <% ["English", "French", "Spanish", "Mandarin", "Portuguese", "Hindi", "Korean", "Vietnamese", "Hebrew"].each do |language| %>
+            <label class="relative cursor-pointer">
+              <%= f.check_box :spoken_languages,
+                  { multiple: true,
+                    checked: @profile.spoken_languages&.include?(language),
+                    class: "peer sr-only",
+                    data: { profile_details_target: "languages" } },
+                  language,
+                  nil %>
+              <span class="inline-flex items-center px-4 py-2 rounded-full border border-gray-300 hover:bg-gray-50 peer-checked:bg-[#C14F4F] peer-checked:text-white peer-checked:border-[#C14F4F] transition-colors duration-200">
+                <%= language %>
+              </span>
+            </label>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-2">
+        <button type="button"
+                data-action="profile-details#cancel"
+                class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+          Cancel
+        </button>
+        <%= f.submit "Save",
+            class: "px-4 py-2 text-sm font-medium text-white bg-[#C14F4F] border border-transparent rounded-md shadow-sm hover:bg-[#B13F3F] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+
 <div class="mt-4 px-4" data-controller="biography">
   <div class="flex items-center justify-between mb-2">
     <h2 class="text-lg font-semibold text-gray-900">Biography</h2>

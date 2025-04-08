@@ -45,6 +45,28 @@
 
 <div class="mt-4 px-4">
   <div class="flex items-center justify-between mb-2">
+    <h2 class="text-lg font-semibold text-gray-900">Personal Details</h2>
+  </div>
+
+  <div class="text-gray-600">
+    <div class="flex items-center gap-4">
+      <div>
+        <p class="text-sm text-gray-500">
+          <%= @profile.age %> years old • <%= @profile.sex&.titleize %>
+        </p>
+      </div>
+
+      <div class="flex flex-wrap gap-1">
+        <% @profile.spoken_languages.each do |language| %>
+          <span class="px-2 py-0.5 bg-gray-100 text-gray-600 text-xs rounded-full">
+            <%= language.upcase %>
+          </span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex items-center justify-between mt-6 mb-2">
     <h2 class="text-lg font-semibold text-gray-900">Biography</h2>
   </div>
 

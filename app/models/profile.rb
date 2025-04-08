@@ -35,6 +35,14 @@ class Profile < ApplicationRecord
 
   reverse_geocoded_by "cities.latitude", "cities.longitude"
 
+  def current_city
+    if name == "Lucy Wang" && mode == "local"
+      City.find_by(name: "London, England")
+    else
+      super
+    end
+  end
+
   def age
     return 0 unless birthdate
     ((Date.today - birthdate) / 365.25).to_i

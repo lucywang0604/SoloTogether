@@ -27,3 +27,9 @@ application.register("search-form", SearchFormController)
 
 import ModalController from "./modal_controller"
 application.register("modal", ModalController)
+
+import DropdownController from "./dropdown_controller"
+application.register("dropdown", DropdownController)
+
+import ProfileDetailsController from "./profile_details_controller"
+application.register("profile-details", ProfileDetailsController)

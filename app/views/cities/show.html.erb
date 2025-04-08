@@ -29,7 +29,21 @@
             </div>
 
             <div class="p-4">
-              <h3 class="text-lg font-semibold text-gray-900 mb-2"><%= experience.name %></h3>
+              <div class="flex items-center justify-between">
+                <h3 class="text-lg font-semibold text-gray-900 mb-2"><%= experience.name %></h3>
+                <%= link_to profile_path(experience.profile), class: "flex items-center" do %>
+                  <div class="w-8 h-8 rounded-full overflow-hidden">
+                    <% if experience.profile.avatar.attached? %>
+                      <%= cl_image_tag experience.profile.avatar.key, class: "w-full h-full object-cover" %>
+                    <% else %>
+                      <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+                        <span class="text-xs text-gray-400">No photo</span>
+                      </div>
+                    <% end %>
+                  </div>
+                  <span class="ml-2 text-gray-600"><%= experience.profile.name %></span>
+                <% end %>
+              </div>
               <p class="text-gray-600 mb-3 text-sm"><%= truncate(experience.description, length: 100) %></p>
 
               <div class="flex items-center justify-between">

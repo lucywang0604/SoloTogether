@@ -46,9 +46,22 @@ class ProfilesController < ApplicationController
 
   def update
     if @profile.update(profile_params)
-      render json: { biography: @profile.biography }
+      if request.format.json?
+        render json: {
+          biography: @profile.biography,
+          age: @profile.age,
+          sex: @profile.sex,
+          spoken_languages: @profile.spoken_languages
+        }
+      else
+        redirect_to me_path
+      end
     else
-      render json: { errors: @profile.errors.full_messages }, status: :unprocessable_entity
+      if request.format.json?
+        render json: { errors: @profile.errors.full_messages }, status: :unprocessable_entity
+      else
+        render :edit, status: :unprocessable_entity
+      end
     end
   end
 
@@ -59,6 +72,6 @@ class ProfilesController < ApplicationController
   end
 
   def profile_params
-    params.require(:profile).permit(:biography)
+    params.require(:profile).permit(:biography, :birthdate, :sex, spoken_languages: [])
   end
 end

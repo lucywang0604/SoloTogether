@@ -19,7 +19,7 @@ class ExperiencesController < ApplicationController
     @experience.city = current_profile.current_city
 
     if @experience.save
-      redirect_to profile_path(current_profile), notice: 'Experience was successfully created.'
+      redirect_to me_path, notice: 'Experience was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end

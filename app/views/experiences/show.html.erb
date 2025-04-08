@@ -27,11 +27,26 @@
         <!-- Title and Location -->
         <div class="mb-4">
           <h1 class="text-2xl font-bold text-gray-900 mb-2"><%= @experience.name %></h1>
-          <div class="flex items-center text-gray-600">
-            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-            </svg>
-            <span class="ml-2"><%= @experience.city.name %></span>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center text-gray-600">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              </svg>
+              <span class="ml-2"><%= @experience.city.name %></span>
+            </div>
+
+            <%= link_to profile_path(@experience.profile), class: "flex items-center" do %>
+              <div class="w-8 h-8 rounded-full overflow-hidden">
+                <% if @experience.profile.avatar.attached? %>
+                  <%= cl_image_tag @experience.profile.avatar.key, class: "w-full h-full object-cover" %>
+                <% else %>
+                  <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+                    <span class="text-xs text-gray-400">No photo</span>
+                  </div>
+                <% end %>
+              </div>
+              <span class="ml-2 text-gray-600"><%= @experience.profile.name %></span>
+            <% end %>
           </div>
         </div>
 
