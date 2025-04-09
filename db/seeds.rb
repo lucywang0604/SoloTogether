@@ -40,7 +40,7 @@ user_profile_data = [
   },
   {
     user: { email: "tina@gmail.com", password: "password" },
-    profile: { name: "Tina Lee", image_url: "https://avatars.githubusercontent.com/u/182520498?v=4", current_city: paris, original_city: taipei, mode: "visitor", birthdate: Date.new(1996, 05, 01), spoken_languages: ["English", "Mandarin"], sex: "female", biography: "Digital nomad and culture enthusiast. Love meeting new people and experiencing different ways of life." }
+    profile: { name: "Tina Lee", image_url: "https://avatars.githubusercontent.com/u/182520498?v=4", current_city: paris, original_city: taipei, mode: "local", birthdate: Date.new(1996, 05, 01), spoken_languages: ["English", "Mandarin"], sex: "female", biography: "Digital nomad and culture enthusiast. Love meeting new people and experiencing different ways of life." }
   },
   {
     user: { email: "mike@gmail.com", password: "password" },
@@ -158,7 +158,7 @@ experience_data = [
     city: paris,
     price: 45.00,
     duration: 2,
-    profile: Profile.find_by(name: "John Doe"),
+    profile: Profile.find_by(name: "Ivy Chiang"),
     image_url: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34"
   },
   {
@@ -167,7 +167,7 @@ experience_data = [
     city: paris,
     price: 65.00,
     duration: 3,
-    profile: Profile.find_by(name: "Jane Doe"),
+    profile: Profile.find_by(name: "Tina Lee"),
     image_url: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0"
   },
   {
@@ -185,7 +185,7 @@ experience_data = [
     city: paris,
     price: 40.00,
     duration: 3,
-    profile: Profile.find_by(name: "John Doe"),
+    profile: Profile.find_by(name: "Ivy Chiang"),
     image_url: "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f"
   },
   {
@@ -194,7 +194,7 @@ experience_data = [
     city: london,
     price: 35.00,
     duration: 3,
-    profile: Profile.find_by(name: "John Doe"),
+    profile: Profile.find_by(name: "Lucy Wang"),
     image_url: "https://images.unsplash.com/photo-1533900298318-6b8da08a523e"
   }
 ]
@@ -239,15 +239,15 @@ trip2 = Trip.create!(profile: Profile.find_by(name: "Lucy Wang"), city: new_york
 trip3 = Trip.create!(profile: Profile.find_by(name: "Lucy Wang"), city: tokyo)
 trip4 = Trip.create!(profile: Profile.find_by(name: "Lucy Wang"), city: sydney)
 
-# John Doe's trips
-trip5 = Trip.create!(profile: Profile.find_by(name: "John Doe"), city: london)
-trip6 = Trip.create!(profile: Profile.find_by(name: "John Doe"), city: paris)
-trip7 = Trip.create!(profile: Profile.find_by(name: "John Doe"), city: tokyo)
+# Ivy Chiang's trips
+trip5 = Trip.create!(profile: Profile.find_by(name: "Ivy Chiang"), city: london)
+trip6 = Trip.create!(profile: Profile.find_by(name: "Ivy Chiang"), city: taipei)
+trip7 = Trip.create!(profile: Profile.find_by(name: "Ivy Chiang"), city: tokyo)
 
-# Jane Doe's trips
-trip8 = Trip.create!(profile: Profile.find_by(name: "Jane Doe"), city: sydney)
-trip9 = Trip.create!(profile: Profile.find_by(name: "Jane Doe"), city: new_york)
-trip10 = Trip.create!(profile: Profile.find_by(name: "Jane Doe"), city: london)
+# Tina Lee's trips
+trip8 = Trip.create!(profile: Profile.find_by(name: "Tina Lee"), city: sydney)
+trip9 = Trip.create!(profile: Profile.find_by(name: "Tina Lee"), city: new_york)
+trip10 = Trip.create!(profile: Profile.find_by(name: "Tina Lee"), city: london)
 
 # Mike Doe's trips
 trip11 = Trip.create!(profile: Profile.find_by(name: "Mike Doe"), city: paris)
@@ -345,12 +345,12 @@ puts "Creating Friendships"
   ["Lucy Wang", "Olivia Kim"],
 
   # John's core friend group
-  ["John Doe", "Lucas Martinez"],
-  ["John Doe", "Alexander Wright"],
-  ["John Doe", "William Anderson"],
+  ["Ivy Chiang", "Lucas Martinez"],
+  ["Ivy Chiang", "Alexander Wright"],
+  ["Ivy Chiang", "William Anderson"],
 
   # Cross-group connections
-  ["Emma Thompson", "John Doe"],
+  ["Emma Thompson", "Ivy Chiang"],
   ["Sofia Chen", "Lucas Martinez"],
   ["Olivia Kim", "Alexander Wright"],
 
@@ -405,8 +405,8 @@ end
 # Create some specific bookings to ensure good coverage
 # Lucy's bookings (already created, but adding more)
 Booking.create!(
-  date: 3.weeks.from_now,
-  experience: Experience.find_by(name: "Camden Market Explorer"),
+  date: 2.days.from_now,
+  experience: Experience.find_by(name: "Authentic French Pastry Workshop"),
   profile: Profile.find_by(name: "Lucy Wang")
 )
 
@@ -426,12 +426,12 @@ Booking.create!(
 Booking.create!(
   date: 1.week.from_now,
   experience: Experience.find_by(name: "Le Marais Food Journey"),
-  profile: Profile.find_by(name: "John Doe")
+  profile: Profile.find_by(name: "Ivy Chiang")
 )
 Booking.create!(
   date: 2.months.ago,
   experience: Experience.find_by(name: "Seine Sunset Photography"),
-  profile: Profile.find_by(name: "John Doe")
+  profile: Profile.find_by(name: "Ivy Chiang")
 )
 
 # Sofia's bookings
