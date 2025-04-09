@@ -568,83 +568,103 @@ Booking.create!(
 )
 
 
-# Creating posts with real Unsplash images
-Post.create!(
-  title: "Amazing sunset in Paris",
-  body: "Caught this incredible view from Montmartre today. The city of lights never disappoints!",
-  location: "Montmartre, Paris",
-  photo: URI.open("https://images.unsplash.com/photo-1502602898657-3e91760cbb34"),
-  profile: Profile.find_by(name: "Mia Garcia")
-)
-
-Post.create!(
-  title: "Street art discoveries",
-  body: "Found these amazing murals while wandering through Camden. London's art scene is incredible!",
-  location: "Camden Town, London",
-  photo: URI.open("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085"),
-  profile: Profile.find_by(name: "James O'Connor")
-)
-
-Post.create!(
-  title: "Morning at the local café",
-  body: "Starting my day with the perfect croissant and café au lait. This is the Parisian life!",
-  location: "Le Marais, Paris",
-  photo: URI.open("https://images.unsplash.com/photo-1470091688026-38b51162c8df"),
-  profile: Profile.find_by(name: "Charlotte Wilson")
-)
-
-Post.create!(
-  title: "Hidden gardens of London",
-  body: "Discovered this peaceful oasis in the middle of the city. Perfect spot for reading!",
-  location: "Hampstead, London",
-  photo: URI.open("https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07"),
-  profile: Profile.find_by(name: "Benjamin Lee")
-)
-
-Post.create!(
-  title: "Vintage finds",
-  body: "Today's haul from the flea market. Can't believe these treasures!",
-  location: "Saint-Ouen Flea Market, Paris",
-  photo: URI.open("https://images.unsplash.com/photo-1489847737011-2a9c28b5fc95"),
-  profile: Profile.find_by(name: "Daniel Cohen")
-)
-
-Post.create!(
-  title: "Rainy day in London",
-  body: "There's something magical about London in the rain. The streets shine like mirrors.",
-  location: "Covent Garden, London",
-  photo: URI.open("https://images.unsplash.com/photo-1513635269975-59663e0ac1ad"),
-  profile: Profile.find_by(name: "Mia Garcia")
-)
-
-Post.create!(
-  title: "Evening at the Seine",
-  body: "Taking an evening stroll along the Seine. The city feels different at night.",
-  location: "Seine River, Paris",
-  photo: URI.open("https://images.unsplash.com/photo-1499856871958-5b9627545d1a"),
-  profile: Profile.find_by(name: "Charlotte Wilson")
-)
-
-Post.create!(
-  title: "Sunday market vibes",
-  body: "Fresh produce, friendly faces, and the best atmosphere at the local market!",
-  location: "Borough Market, London",
-  photo: URI.open("https://images.unsplash.com/photo-1533900298318-6b8da08a523e"),
-  profile: Profile.find_by(name: "Benjamin Lee")
-)
-
-Post.create!(
-  title: "Architecture appreciation",
-  body: "The mix of old and new architecture in this city never ceases to amaze me.",
-  location: "City of London",
-  photo: URI.open("https://images.unsplash.com/photo-1500380804539-4e1e8c1e7118"),
-  profile: Profile.find_by(name: "James O'Connor")
-)
-
-Post.create!(
-  title: "Parisian café culture",
-  body: "People watching at my favorite café. This is what Paris is all about!",
-  location: "Saint-Germain-des-Prés, Paris",
-  photo: URI.open("https://images.unsplash.com/photo-1514933651103-005eec06c04b"),
-  profile: Profile.find_by(name: "Daniel Cohen")
-)
+puts "Creating initial posts..."
+# First batch of posts
+[
+  {
+    title: "Amazing sunset in Paris",
+    body: "Caught this incredible view from Montmartre today. The city of lights never disappoints!",
+    location: "Montmartre, Paris",
+    profile: Profile.find_by(name: "Mia Garcia"),
+    photo_url: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34",
+    filename: "paris_sunset.jpg"
+  },
+  {
+    title: "Street art discoveries",
+    body: "Found these amazing murals while wandering through Camden. London's art scene is incredible!",
+    location: "Camden Town, London",
+    profile: Profile.find_by(name: "James O'Connor"),
+    photo_url: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085",
+    filename: "london_street_art.jpg"
+  },
+  {
+    title: "Morning at the local café",
+    body: "Starting my day with the perfect croissant and café au lait. This is the Parisian life!",
+    location: "Le Marais, Paris",
+    profile: Profile.find_by(name: "Charlotte Wilson"),
+    photo_url: "https://images.unsplash.com/photo-1470091688026-38b51162c8df",
+    filename: "paris_cafe.jpg"
+  },
+  {
+    title: "Hidden gardens of London",
+    body: "Discovered this peaceful oasis in the middle of the city. Perfect spot for reading!",
+    location: "Hampstead, London",
+    profile: Profile.find_by(name: "Benjamin Lee"),
+    photo_url: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07",
+    filename: "london_garden.jpg"
+  },
+  {
+    title: "Vintage finds",
+    body: "Today's haul from the flea market. Can't believe these treasures!",
+    location: "Saint-Ouen Flea Market, Paris",
+    profile: Profile.find_by(name: "Daniel Cohen"),
+    photo_url: "https://images.unsplash.com/photo-1489847737011-2a9c28b5fc95",
+    filename: "paris_vintage.jpg"
+  },
+  {
+    title: "Rainy day in London",
+    body: "There's something magical about London in the rain. The streets shine like mirrors.",
+    location: "Covent Garden, London",
+    profile: Profile.find_by(name: "Mia Garcia"),
+    photo_url: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad",
+    filename: "london_rain.jpg"
+  },
+  {
+    title: "Evening at the Seine",
+    body: "Taking an evening stroll along the Seine. The city feels different at night.",
+    location: "Seine River, Paris",
+    profile: Profile.find_by(name: "Charlotte Wilson"),
+    photo_url: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a",
+    filename: "paris_seine.jpg"
+  },
+  {
+    title: "Sunday market vibes",
+    body: "Fresh produce, friendly faces, and the best atmosphere at the local market!",
+    location: "Borough Market, London",
+    profile: Profile.find_by(name: "Benjamin Lee"),
+    photo_url: "https://images.unsplash.com/photo-1533900298318-6b8da08a523e",
+    filename: "london_market.jpg"
+  },
+  {
+    title: "Architecture appreciation",
+    body: "The mix of old and new architecture in this city never ceases to amaze me.",
+    location: "City of London",
+    profile: Profile.find_by(name: "James O'Connor"),
+    photo_url: "https://images.unsplash.com/photo-1500380804539-4e1e8c1e7118",
+    filename: "london_architecture.jpg"
+  },
+  {
+    title: "Parisian café culture",
+    body: "People watching at my favorite café. This is what Paris is all about!",
+    location: "Saint-Germain-des-Prés, Paris",
+    profile: Profile.find_by(name: "Daniel Cohen"),
+    photo_url: "https://images.unsplash.com/photo-1514933651103-005eec06c04b",
+    filename: "paris_cafe_culture.jpg"
+  }
+].each do |post_data|
+  post = Post.create!(
+    title: post_data[:title],
+    body: post_data[:body],
+    location: post_data[:location],
+    profile: post_data[:profile]
+  )
+  begin
+    post.photo.attach(
+      io: URI.open(post_data[:photo_url]),
+      filename: post_data[:filename],
+      content_type: "image/jpg"
+    )
+  rescue OpenURI::HTTPError => e
+    puts "Failed to attach photo for post '#{post_data[:title]}': #{e.message}"
+  end
+end
