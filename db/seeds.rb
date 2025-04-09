@@ -604,14 +604,6 @@ puts "Creating initial posts..."
     filename: "london_garden.jpg"
   },
   {
-    title: "Vintage finds",
-    body: "Today's haul from the flea market. Can't believe these treasures!",
-    location: "Saint-Ouen Flea Market, Paris",
-    profile: Profile.find_by(name: "Daniel Cohen"),
-    photo_url: "https://images.unsplash.com/photo-1489847737011-2a9c28b5fc95",
-    filename: "paris_vintage.jpg"
-  },
-  {
     title: "Rainy day in London",
     body: "There's something magical about London in the rain. The streets shine like mirrors.",
     location: "Covent Garden, London",
