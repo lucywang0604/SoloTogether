@@ -10,6 +10,9 @@ puts "Creating Cities"
 paris = City.create!(name: "Paris, France")
 paris.photo.attach(io: File.open(Rails.root.join("app/assets/images/seeds/cities/paris.jpg")), filename: "paris.jpg", content_type: "image/jpg")
 
+taipei = City.create!(name: "Taipei, Taiwan")
+taipei.photo.attach(io: File.open(Rails.root.join("app/assets/images/seeds/cities/taipei.jpg")), filename: "taipei.jpg", content_type: "image/jpg")
+
 london = City.create!(name: "London, England")
 london.photo.attach(io: File.open(Rails.root.join("app/assets/images/seeds/cities/london.jpg")), filename: "london.jpg", content_type: "image/jpg")
 
@@ -29,19 +32,19 @@ puts "Creating Users"
 user_profile_data = [
   {
     user: { email: "lucy@gmail.com", password: "password" },
-    profile: { name: "Lucy Wang", image_url: "https://images.unsplash.com/photo-1494790108377-be9c29b29330", current_city: paris, original_city: tokyo, mode: "visitor", birthdate: (rand(18..60).years.ago + rand(1..12).months), spoken_languages: ["English", "Mandarin"], sex: "female", biography: "Food enthusiast and travel photographer exploring Europe one city at a time. Always on the hunt for hidden gems and local experiences." }
+    profile: { name: "Lucy Wang", image_url: "https://avatars.githubusercontent.com/u/182869529", current_city: paris, original_city: taipei, mode: "visitor", birthdate: Date.new(1985, 10, 20), spoken_languages: ["French", "English", "Mandarin"], sex: "female", biography: "Food enthusiast and travel photographer exploring Europe one city at a time. Always on the hunt for hidden gems and local experiences." }
   },
   {
-    user: { email: "john@gmail.com", password: "password" },
-    profile: { name: "John Doe", image_url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e", current_city: london, original_city: paris, mode: "local", birthdate: (rand(18..60).years.ago + rand(1..12).months), spoken_languages: ["English"], sex: "male", biography: "Born and raised in Paris, now showing visitors the real London. History buff and amateur street photographer." }
+    user: { email: "ivy@gmail.com", password: "password" },
+    profile: { name: "Ivy Chiang", image_url: "https://avatars.githubusercontent.com/u/182496547?v=4", current_city: paris, original_city: taipei, mode: "local", birthdate: Date.new(1997, 06, 24), spoken_languages: ["Mandarin", "English"], sex: "female", biography: "Born and raised in Taipei, now showing visitors the real London. History buff and amateur street photographer." }
   },
   {
-    user: { email: "jane@gmail.com", password: "password" },
-    profile: { name: "Jane Doe", image_url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb", current_city: paris, original_city: tokyo, mode: "visitor", birthdate: (rand(18..60).years.ago + rand(1..12).months), spoken_languages: ["English"], sex: "female", biography: "Digital nomad and culture enthusiast. Love meeting new people and experiencing different ways of life." }
+    user: { email: "tina@gmail.com", password: "password" },
+    profile: { name: "Tina Lee", image_url: "https://avatars.githubusercontent.com/u/182520498?v=4", current_city: paris, original_city: taipei, mode: "visitor", birthdate: Date.new(1996, 05, 01), spoken_languages: ["English", "Mandarin"], sex: "female", biography: "Digital nomad and culture enthusiast. Love meeting new people and experiencing different ways of life." }
   },
   {
     user: { email: "mike@gmail.com", password: "password" },
-    profile: { name: "Mike Doe", image_url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d", current_city: paris, original_city: paris, mode: "local", birthdate: (rand(18..60).years.ago + rand(1..12).months), spoken_languages: ["English", "French"], sex: "male", biography: "Professional chef and culinary tour guide. Passionate about sharing authentic French cuisine and cooking techniques." }
+    profile: { name: "Mike Doe", image_url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d", current_city: paris, original_city: taipei, mode: "local", birthdate: (rand(18..60).years.ago + rand(1..12).months), spoken_languages: ["English", "French"], sex: "male", biography: "Professional chef and culinary tour guide. Passionate about sharing authentic French cuisine and cooking techniques." }
   },
   {
     user: { email: "emma.thompson@gmail.com", password: "password" },
