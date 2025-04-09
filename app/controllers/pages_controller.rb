@@ -6,6 +6,6 @@ class PagesController < ApplicationController
                 .near(current_user.profile.current_city.name, 10)
                 .where.not(id: current_user.profile.id)
 
-    @posts = Post.includes(:profile).order(created_at: :desc)
+    @posts = Post.all.includes(:profile).order(created_at: :desc)
   end
 end
