@@ -30,6 +30,21 @@ class ProfilesController < ApplicationController
   def show
   end
 
+  def new
+    @profile = Profile.new
+  end
+
+  def create
+    @profile = Profile.new(profile_params)
+    @profile.user = current_user
+
+    if @profile.save
+      redirect_to root_path
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   def me
     @profile = current_user.profile
   end
@@ -72,6 +87,6 @@ class ProfilesController < ApplicationController
   end
 
   def profile_params
-    params.require(:profile).permit(:biography, :birthdate, :sex, spoken_languages: [])
+    params.require(:profile).permit(:name, :biography, :birthdate, :current_city_id, :original_city_id, :sex, :avatar, :mode, spoken_languages: [])
   end
 end

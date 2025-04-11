@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: "users/registrations" }
 
   root "pages#home"
 
-  resources :profiles, only: [:index, :show, :update] do
+  resources :profiles, only: [:index, :show, :update, :new, :create] do
     patch :visitor, on: :member
     patch :local, on: :member
     resources :friend_requests, only: [:create, :update, :destroy]
