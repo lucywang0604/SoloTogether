@@ -79,6 +79,4 @@ test:
 #
 production:
   <<: *default
-  database: solo_together_production
-  username: solo_together
-  password: <%= ENV["SOLO_TOGETHER_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
